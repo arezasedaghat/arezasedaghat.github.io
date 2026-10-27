@@ -5,11 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Alireza Sedaghat</title>
   <meta name="description" content="Homepage of Alireza Sedaghat, chemical engineer working on modeling, simulation and control.">
+  <meta name="theme-color" content="#0b2a5b">
+  <link rel="canonical" href="https://arezasedaghat.github.io/">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Alireza Sedaghat">
+  <meta property="og:description" content="Chemical engineer working on modeling, simulation and control.">
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="https://arezasedaghat.github.io/">
+  <meta name="twitter:card" content="summary">
+
+  <!-- Favicon (add favicon.svg to your repo root) -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <!-- Fonts (trimmed to used weights) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- JSON-LD Person schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Alireza Sedaghat",
+    "jobTitle": "Chemical Engineer",
+    "url": "https://arezasedaghat.github.io/",
+    "sameAs": [
+      "https://github.com/arezasedaghat",
+      "https://scholar.google.com/citations?user=bqL5dq0AAAAJ"
+    ]
+  }
+  </script>
+
   <style>
     :root {
+      color-scheme: light;
       --navy: #0b2a5b;
       --blue: #1f5fbf;
       --sky: #cfe2f8;
@@ -38,6 +69,21 @@
       border-radius: 2px;
     }
 
+    /* ---------- Skip link ---------- */
+    .skip-link {
+      position: absolute;
+      left: -999px;
+      top: 0;
+      background: var(--navy);
+      color: #fff;
+      padding: .75rem 1rem;
+      z-index: 100;
+      border-radius: 0 0 6px 0;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .skip-link:focus { left: 0; }
+
     /* ---------- Layout ---------- */
     .page { display: block; }
 
@@ -52,6 +98,7 @@
       font-size: 2.1rem;
       line-height: 1.15;
       margin: 0 0 .5rem;
+      text-wrap: balance;
     }
     .sidebar .role { margin: 0 0 1.5rem; color: var(--sky); }
     .sidebar nav ul {
@@ -60,7 +107,7 @@
       padding: 0;
       display: flex;
       flex-wrap: wrap;
-      gap: .25rem .5rem;
+      gap: .35rem;
     }
     .sidebar nav a {
       display: block;
@@ -70,15 +117,19 @@
       border-radius: 999px;
       font-weight: 500;
       font-size: .95rem;
+      transition: background-color .15s ease;
     }
     .sidebar nav a:hover { background: rgba(255,255,255,.14); }
+    .sidebar nav a.active { background: rgba(255,255,255,.18); }
     .sidebar a:focus-visible { outline-color: var(--sky); }
     .sidebar .links { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; }
     .sidebar .links a { color: var(--sky); font-size: .95rem; }
 
-    main { padding: 0 1.5rem 3rem; }
-    section { padding: 2.5rem 0 .5rem; }
-    section + section { border-top: 1px solid var(--sky); margin-top: 1.5rem; }
+    .content { display: flex; flex-direction: column; min-height: 100vh; }
+
+    main { padding: 0 1.5rem 3rem; flex: 1; }
+    section { padding: 2.5rem 0; }
+    section + section { border-top: 1px solid var(--sky); }
 
     h2 {
       font-family: var(--serif);
@@ -87,22 +138,31 @@
       line-height: 1.2;
       margin: 0 0 1.25rem;
       color: var(--navy);
+      text-wrap: balance;
     }
-    p { margin: 0 0 1rem; max-width: 68ch; }
+    p { margin: 0 0 1rem; max-width: 68ch; text-wrap: pretty; }
+    p:last-child { margin-bottom: 0; }
 
     /* ---------- About ---------- */
     .about-box {
       background: var(--mist);
       border-left: 4px solid var(--blue);
-      padding: 1.25rem 1.25rem .25rem;
+      padding: 1.25rem;
       border-radius: 0 6px 6px 0;
     }
 
     /* ---------- Research interests ---------- */
-    .interests { list-style: none; margin: 0; padding: 0; max-width: 40rem; }
+    .interests {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: 40rem;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+    }
     .interests li {
       padding: .9rem 1rem;
-      margin-bottom: .6rem;
       background: var(--white);
       border: 1px solid var(--sky);
       border-left: 4px solid var(--blue);
@@ -111,22 +171,42 @@
       font-weight: 500;
     }
 
-    /* ---------- Placeholder sections ---------- */
-    .construction {
+    /* ---------- Placeholder / general note ---------- */
+    .note {
       background: var(--mist);
       color: var(--muted);
       border: 1px dashed var(--blue);
       border-radius: 6px;
       padding: 1rem 1.25rem;
       max-width: 40rem;
-      margin-bottom: 1rem;
     }
 
-    footer { padding: 1.5rem; color: var(--muted); font-size: .88rem; border-top: 1px solid var(--sky); }
+    /* ---------- Contact ---------- */
+    .contact-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+      max-width: 40rem;
+    }
+    .contact-list a { font-weight: 500; }
+
+    footer {
+      padding: 1.5rem;
+      color: var(--muted);
+      font-size: .88rem;
+      border-top: 1px solid var(--sky);
+    }
 
     /* ---------- Desktop ---------- */
     @media (min-width: 900px) {
-      .page { display: grid; grid-template-columns: 20rem 1fr; }
+      .page {
+        display: grid;
+        grid-template-columns: 20rem 1fr;
+        grid-template-rows: 1fr auto;
+      }
       .sidebar {
         position: sticky;
         top: 0;
@@ -135,20 +215,34 @@
         display: flex;
         flex-direction: column;
         overflow-y: auto;
+        grid-row: 1 / span 2;
       }
-      .sidebar nav ul { flex-direction: column; flex-wrap: nowrap; gap: .15rem; margin-bottom: 2rem; }
-      .sidebar nav a { border-radius: 6px; padding: .5rem .75rem; margin-left: -.75rem; }
+      .sidebar nav ul {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap: .15rem;
+        margin-bottom: 2rem;
+      }
+      .sidebar nav a {
+        border-radius: 6px;
+        padding: .5rem .75rem;
+        margin-left: -.75rem;
+      }
       .sidebar .links { flex-direction: column; margin-top: auto; gap: .4rem; }
+      .content { min-height: 100vh; }
       main { padding: 2rem 4rem 4rem; max-width: 60rem; }
       footer { padding: 1.5rem 4rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
+      .sidebar nav a { transition: none; }
     }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#about">Skip to content</a>
+
   <div class="page">
 
     <!-- ===== Sidebar / header ===== -->
@@ -159,20 +253,16 @@
         <ul>
           <li><a href="#about">About</a></li>
           <li><a href="#interests">Research interests</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#publications">Publications</a></li>
-          <li><a href="#awards">Honors and awards</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
       <div class="links">
-        <a href="https://github.com/arezasedaghat">GitHub</a>
-        <a href="https://scholar.google.com/citations?user=bqL5dq0AAAAJ&hl=en">Google Scholar</a>
+        <a href="https://github.com/arezasedaghat" rel="me noopener" target="_blank">GitHub</a>
+        <a href="https://scholar.google.com/citations?user=bqL5dq0AAAAJ&amp;hl=en" rel="me noopener" target="_blank">Google Scholar</a>
       </div>
     </header>
 
-    <div>
+    <div class="content">
       <main>
 
         <!-- ===== About ===== -->
@@ -204,43 +294,54 @@
           </ul>
         </section>
 
-        <!-- ===== Experience ===== -->
-        <section id="experience">
-          <h2>Experience</h2>
-          <p class="construction">Under Construction</p>
-        </section>
-
-        <!-- ===== Projects ===== -->
-        <section id="projects">
-          <h2>Projects</h2>
-          <p class="construction">Under Construction</p>
-        </section>
-
-        <!-- ===== Publications ===== -->
-        <section id="publications">
-          <h2>Publications</h2>
-          <p class="construction">Under Construction</p>
-        </section>
-
-        <!-- ===== Honors and awards ===== -->
-        <section id="awards">
-          <h2>Honors and awards</h2>
-          <p class="construction">Under Construction</p>
-        </section>
-
         <!-- ===== Contact ===== -->
         <section id="contact">
           <h2>Contact</h2>
-          <p class="construction">Under Construction</p>
+          <p>
+            The best ways to reach me are through email or GitHub.
+            I am happy to discuss research, collaborations, or questions about my work.
+          </p>
+          <ul class="contact-list">
+            <li>Email: <a href="mailto:you@example.com">you@example.com</a></li>
+            <li>GitHub: <a href="https://github.com/arezasedaghat" rel="me noopener" target="_blank">github.com/arezasedaghat</a></li>
+            <li>Google Scholar: <a href="https://scholar.google.com/citations?user=bqL5dq0AAAAJ&amp;hl=en" rel="me noopener" target="_blank">Scholar profile</a></li>
+          </ul>
         </section>
 
       </main>
-      <footer>© <span id="year">2026</span> Alireza Sedaghat</footer>
+
+      <footer>© 2022–<span id="year">2026</span> Alireza Sedaghat</footer>
     </div>
 
   </div>
+
   <script>
+    // Update footer year
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Scrollspy: highlight active nav link
+    (function () {
+      const links = document.querySelectorAll('.sidebar nav a');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+
+      const sections = [...links]
+        .map(a => document.querySelector(a.hash))
+        .filter(Boolean);
+
+      const setActive = (id) => {
+        links.forEach(a => a.classList.toggle('active', a.hash === '#' + id));
+      };
+
+      const io = new IntersectionObserver((entries) => {
+        // Pick the entry closest to the top of the viewport
+        const visible = entries
+          .filter(e => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible.length) setActive(visible[0].target.id);
+      }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+
+      sections.forEach(s => io.observe(s));
+    })();
   </script>
 </body>
 </html>
