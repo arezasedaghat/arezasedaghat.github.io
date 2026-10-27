@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Alireza Sedaghat</title>
+  <title>Alireza Sedaghat — Chemical Engineer</title>
   <meta name="description" content="Homepage of Alireza Sedaghat, chemical engineer working on modeling, simulation and control.">
   <meta name="theme-color" content="#0b2a5b">
   <link rel="canonical" href="https://arezasedaghat.github.io/">
 
   <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="Alireza Sedaghat">
-  <meta property="og:description" content="Chemical engineer working on modeling, simulation and control.">
+  <meta property="og:title" content="Alireza Sedaghat — Chemical Engineer">
+  <meta property="og:description" content="Modeling, simulation and control of chemical processes.">
   <meta property="og:type" content="profile">
   <meta property="og:url" content="https://arezasedaghat.github.io/">
   <meta name="twitter:card" content="summary">
@@ -18,10 +18,10 @@
   <!-- Favicon (add favicon.svg to your repo root) -->
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
-  <!-- Fonts (trimmed to used weights) -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
 
   <!-- JSON-LD Person schema -->
   <script type="application/ld+json">
@@ -48,25 +48,55 @@
       --white: #ffffff;
       --ink: #14213d;
       --muted: #4a5a78;
+
+      --radius: 14px;
+      --radius-sm: 8px;
+      --shadow-sm: 0 1px 2px rgba(11, 42, 91, .06), 0 1px 3px rgba(11, 42, 91, .08);
+      --shadow-md: 0 4px 14px rgba(11, 42, 91, .10), 0 2px 4px rgba(11, 42, 91, .06);
+      --shadow-lg: 0 8px 24px rgba(11, 42, 91, .15);
+
       --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
       --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; scroll-padding-top: 1.5rem; }
+
     body {
       margin: 0;
       font-family: var(--sans);
-      font-size: 1rem;
-      line-height: 1.7;
+      font-size: 1.0625rem;         /* 17px */
+      line-height: 1.75;
       color: var(--ink);
       background: var(--white);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
-    a { color: var(--blue); }
-    a:focus-visible {
+
+    /* ---------- Selection ---------- */
+    ::selection {
+      background: var(--sky);
+      color: var(--navy);
+    }
+
+    /* ---------- Focus ---------- */
+    a:focus-visible,
+    button:focus-visible {
       outline: 3px solid var(--blue);
       outline-offset: 3px;
-      border-radius: 2px;
+      border-radius: 4px;
+    }
+
+    /* ---------- Links (general) ---------- */
+    a {
+      color: var(--blue);
+      text-decoration-color: var(--sky);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1.5px;
+      transition: text-decoration-color .2s ease, color .2s ease;
+    }
+    a:hover {
+      text-decoration-color: var(--blue);
     }
 
     /* ---------- Skip link ---------- */
@@ -84,71 +114,183 @@
     }
     .skip-link:focus { left: 0; }
 
-    /* ---------- Layout ---------- */
-    .page { display: block; }
-
-    .sidebar {
-      background: var(--navy);
-      color: var(--white);
-      padding: 2rem 1.5rem;
+    /* ---------- Top bar ---------- */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .85rem 1.5rem;
+      background: rgba(255, 255, 255, .78);
+      backdrop-filter: saturate(160%) blur(10px);
+      -webkit-backdrop-filter: saturate(160%) blur(10px);
+      border-bottom: 1px solid rgba(207, 226, 248, .7);
     }
-    .sidebar h1 {
+    .topbar .brand {
       font-family: var(--serif);
       font-weight: 700;
-      font-size: 2.1rem;
-      line-height: 1.15;
-      margin: 0 0 .5rem;
+      font-size: 1.05rem;
+      color: var(--navy);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .topbar nav ul {
+      display: flex;
+      gap: 1.25rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .topbar nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .95rem;
+      font-weight: 500;
+      transition: color .2s ease;
+    }
+    .topbar nav a:hover { color: var(--navy); }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      min-height: 78vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4.5rem 1.5rem 5rem;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, #e6f0fd 0%, transparent 70%),
+        linear-gradient(180deg, var(--mist) 0%, var(--white) 100%);
+    }
+    /* dotted background mask */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(31, 95, 191, .18) 1px, transparent 1px);
+      background-size: 26px 26px;
+      -webkit-mask-image: linear-gradient(180deg, black 0%, transparent 85%);
+              mask-image: linear-gradient(180deg, black 0%, transparent 85%);
+      pointer-events: none;
+    }
+    .hero > * { position: relative; z-index: 1; }
+
+    .avatar {
+      width: 116px;
+      height: 116px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--white);
+      border: 3px solid var(--white);
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 1.75rem;
+      display: grid;
+      place-items: center;
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: 2.4rem;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(2.1rem, 6vw, 3.6rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin: 0 0 .65rem;
+      color: var(--navy);
       text-wrap: balance;
     }
-    .sidebar .role { margin: 0 0 1.5rem; color: var(--sky); }
-    .sidebar nav ul {
-      list-style: none;
-      margin: 0 0 1.5rem;
-      padding: 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: .35rem;
+
+    .hero .role {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--muted);
+      max-width: 34ch;
+      margin: 0 auto 2.25rem;
+      text-wrap: balance;
     }
-    .sidebar nav a {
-      display: block;
-      padding: .35rem .75rem;
-      color: var(--white);
-      text-decoration: none;
+
+    /* ---------- Social pill buttons ---------- */
+    .social-links {
+      display: flex;
+      gap: .65rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .6rem 1.1rem;
       border-radius: 999px;
+      background: var(--white);
+      border: 1px solid var(--sky);
+      text-decoration: none;
+      color: var(--ink);
       font-weight: 500;
       font-size: .95rem;
-      transition: background-color .15s ease;
+      box-shadow: var(--shadow-sm);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, color .2s ease;
     }
-    .sidebar nav a:hover { background: rgba(255,255,255,.14); }
-    .sidebar nav a.active { background: rgba(255,255,255,.18); }
-    .sidebar a:focus-visible { outline-color: var(--sky); }
-    .sidebar .links { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; }
-    .sidebar .links a { color: var(--sky); font-size: .95rem; }
+    .social-links a:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+      text-decoration: none;
+    }
+    .social-links svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
 
-    .content { display: flex; flex-direction: column; min-height: 100vh; }
+    /* ---------- Main content ---------- */
+    main {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
 
-    main { padding: 0 1.5rem 3rem; flex: 1; }
-    section { padding: 2.5rem 0; }
-    section + section { border-top: 1px solid var(--sky); }
+    section {
+      padding: 2.75rem 0;
+    }
+    section + section {
+      border-top: 1px solid var(--sky);
+    }
 
     h2 {
       font-family: var(--serif);
       font-weight: 600;
-      font-size: 1.75rem;
-      line-height: 1.2;
+      font-size: 1.6rem;
+      line-height: 1.25;
+      letter-spacing: -0.015em;
       margin: 0 0 1.25rem;
       color: var(--navy);
       text-wrap: balance;
     }
-    p { margin: 0 0 1rem; max-width: 68ch; text-wrap: pretty; }
+
+    p {
+      margin: 0 0 1rem;
+      max-width: 68ch;
+      text-wrap: pretty;
+    }
     p:last-child { margin-bottom: 0; }
 
-    /* ---------- About ---------- */
+    /* ---------- About card ---------- */
     .about-box {
       background: var(--mist);
+      border-radius: var(--radius);
+      padding: 1.6rem 1.75rem;
+      box-shadow: var(--shadow-sm);
       border-left: 4px solid var(--blue);
-      padding: 1.25rem;
-      border-radius: 0 6px 6px 0;
     }
 
     /* ---------- Research interests ---------- */
@@ -156,29 +298,33 @@
       list-style: none;
       margin: 0;
       padding: 0;
-      max-width: 40rem;
       display: flex;
       flex-direction: column;
-      gap: .6rem;
+      gap: .75rem;
     }
     .interests li {
-      padding: .9rem 1rem;
+      padding: 1rem 1.25rem;
       background: var(--white);
-      border: 1px solid var(--sky);
-      border-left: 4px solid var(--blue);
-      border-radius: 0 6px 6px 0;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-sm);
       color: var(--navy);
       font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: .85rem;
+      transition: transform .2s ease, box-shadow .2s ease;
     }
-
-    /* ---------- Placeholder / general note ---------- */
-    .note {
-      background: var(--mist);
-      color: var(--muted);
-      border: 1px dashed var(--blue);
-      border-radius: 6px;
-      padding: 1rem 1.25rem;
-      max-width: 40rem;
+    .interests li:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .interests li::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--blue);
+      flex-shrink: 0;
     }
 
     /* ---------- Contact ---------- */
@@ -186,162 +332,203 @@
       list-style: none;
       margin: 0;
       padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: .5rem;
-      max-width: 40rem;
+      display: grid;
+      gap: .75rem;
     }
-    .contact-list a { font-weight: 500; }
+    .contact-list a {
+      display: inline-flex;
+      align-items: center;
+      gap: .65rem;
+      padding: .85rem 1.15rem;
+      border-radius: var(--radius-sm);
+      background: var(--white);
+      border: 1px solid var(--sky);
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 500;
+      box-shadow: var(--shadow-sm);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, color .2s ease;
+    }
+    .contact-list a:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+      text-decoration: none;
+    }
+    .contact-list svg {
+      width: 18px;
+      height: 18px;
+      color: var(--blue);
+      flex-shrink: 0;
+    }
 
+    /* ---------- Footer ---------- */
     footer {
-      padding: 1.5rem;
+      padding: 2rem 1.5rem;
       color: var(--muted);
       font-size: .88rem;
+      text-align: center;
       border-top: 1px solid var(--sky);
+      background: var(--mist);
+    }
+    footer p { margin: 0; max-width: none; }
+
+    /* ---------- Custom scrollbar (desktop) ---------- */
+    @media (pointer: fine) {
+      ::-webkit-scrollbar { width: 10px; }
+      ::-webkit-scrollbar-track { background: var(--mist); }
+      ::-webkit-scrollbar-thumb {
+        background: var(--sky);
+        border-radius: 5px;
+        border: 2px solid var(--mist);
+      }
+      ::-webkit-scrollbar-thumb:hover { background: var(--blue); }
     }
 
-    /* ---------- Desktop ---------- */
-    @media (min-width: 900px) {
-      .page {
-        display: grid;
-        grid-template-columns: 20rem 1fr;
-        grid-template-rows: 1fr auto;
+    /* ---------- Scroll reveal ---------- */
+    @media (prefers-reduced-motion: no-preference) {
+      section {
+        animation: fadeUp .65s ease both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 25%;
       }
-      .sidebar {
-        position: sticky;
-        top: 0;
-        height: 100vh;
-        padding: 3rem 2rem;
-        display: flex;
-        flex-direction: column;
-        overflow-y: auto;
-        grid-row: 1 / span 2;
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(14px); }
+        to   { opacity: 1; transform: translateY(0); }
       }
-      .sidebar nav ul {
-        flex-direction: column;
-        flex-wrap: nowrap;
-        gap: .15rem;
-        margin-bottom: 2rem;
-      }
-      .sidebar nav a {
-        border-radius: 6px;
-        padding: .5rem .75rem;
-        margin-left: -.75rem;
-      }
-      .sidebar .links { flex-direction: column; margin-top: auto; gap: .4rem; }
-      .content { min-height: 100vh; }
-      main { padding: 2rem 4rem 4rem; max-width: 60rem; }
-      footer { padding: 1.5rem 4rem; }
+    }
+
+    /* ---------- Mobile tweaks ---------- */
+    @media (max-width: 600px) {
+      .topbar { padding: .7rem 1rem; }
+      .topbar nav ul { gap: .85rem; }
+      .topbar nav a { font-size: .88rem; }
+      .hero { min-height: auto; padding: 3rem 1.25rem 4rem; }
+      .avatar { width: 96px; height: 96px; font-size: 2rem; }
+      main { padding: 2rem 1.25rem 4rem; }
+      section { padding: 2rem 0; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .sidebar nav a { transition: none; }
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
     }
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#about">Skip to content</a>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <div class="page">
+  <!-- ===== Top bar ===== -->
+  <header class="topbar">
+    <a class="brand" href="#top">Alireza Sedaghat</a>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#interests">Research</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <!-- ===== Sidebar / header ===== -->
-    <header class="sidebar">
-      <h1>Alireza Sedaghat</h1>
-      <p class="role">Process Systems Engineering (PSE)</p>
-      <nav aria-label="Sections">
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#interests">Research interests</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-      <div class="links">
-        <a href="https://github.com/arezasedaghat" rel="me noopener" target="_blank">GitHub</a>
-        <a href="https://scholar.google.com/citations?user=bqL5dq0AAAAJ&amp;hl=en" rel="me noopener" target="_blank">Google Scholar</a>
-      </div>
-    </header>
+  <!-- ===== Hero ===== -->
+  <section class="hero" id="top" aria-labelledby="hero-name">
+    <div class="avatar" aria-hidden="true">AS</div>
+    <h1 id="hero-name">Alireza Sedaghat</h1>
+    <p class="role">Chemical engineer working on modeling, simulation and control of chemical processes.</p>
 
-    <div class="content">
-      <main>
-
-        <!-- ===== About ===== -->
-        <section id="about">
-          <h2>About</h2>
-          <div class="about-box">
-            <p>
-              I hold an M.Sc. in Chemical Engineering, in the Modeling, Simulation, and Control group,
-              from Sharif University of Technology (Tehran, Iran). I joined the program in September 2022
-              and graduated in January 2025. My thesis, “Kinetic modeling and dynamic simulation of an
-              integrated hydrocracking process using SLB Symmetry process simulator, VBA, VB.Net, and
-              Python,” was supervised by
-              <a href="https://scholar.google.com/citations?user=EVMUh8cAAAAJ&amp;hl=en">Prof. Mahmoud Reza Pishvaie</a>.
-              Before that, I started my B.Sc. in Chemical Engineering at Sharif University of Technology
-              in 2018 and completed it in 2022. My B.Sc. project, “Dynamic simulation and control of an
-              integrated CDU-VDU process using Aspen Plus simulator,” was also carried out under the
-              supervision of Prof. Pishvaie.
-            </p>
-          </div>
-        </section>
-
-        <!-- ===== Research interests ===== -->
-        <section id="interests">
-          <h2>Research interests</h2>
-          <ul class="interests">
-            <li>Dynamic modeling and simulation</li>
-            <li>Optimization and control</li>
-            <li>Application of AI in chemical engineering</li>
-          </ul>
-        </section>
-
-        <!-- ===== Contact ===== -->
-        <section id="contact">
-          <h2>Contact</h2>
-          <p>
-            The best ways to reach me are through email or GitHub.
-            I am happy to discuss research, collaborations, or questions about my work.
-          </p>
-          <ul class="contact-list">
-            <li>Email: <a href="mailto:you@example.com">you@example.com</a></li>
-            <li>GitHub: <a href="https://github.com/arezasedaghat" rel="me noopener" target="_blank">github.com/arezasedaghat</a></li>
-            <li>Google Scholar: <a href="https://scholar.google.com/citations?user=bqL5dq0AAAAJ&amp;hl=en" rel="me noopener" target="_blank">Scholar profile</a></li>
-          </ul>
-        </section>
-
-      </main>
-
-      <footer>© 2022–<span id="year">2026</span> Alireza Sedaghat</footer>
+    <div class="social-links">
+      <a href="https://github.com/arezasedaghat" rel="me noopener" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.93c.58.1.79-.25.79-.55v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.29-1.69-1.29-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.74.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.41-5.26 5.7.41.36.78 1.06.78 2.14v3.17c0 .31.21.66.8.55A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
+        GitHub
+      </a>
+      <a href="https://scholar.google.com/citations?user=bqL5dq0AAAAJ&amp;hl=en" rel="me noopener" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2 1 8l11 6 9-4.91V17h2V8L12 2Z"/><path d="M5 13.18V17c0 2 3.13 4 7 4s7-2 7-4v-3.82l-7 3.82-7-3.82Z"/></svg>
+        Google Scholar
+      </a>
+      <a href="mailto:you@example.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        Email
+      </a>
     </div>
+  </section>
 
-  </div>
+  <!-- ===== Main ===== -->
+  <main id="main">
+
+    <!-- About -->
+    <section id="about">
+      <h2>About</h2>
+      <div class="about-box">
+        <p>
+          I hold an M.Sc. in Chemical Engineering, in the Modeling, Simulation, and Control group,
+          from Sharif University of Technology (Tehran, Iran). I joined the program in September 2022
+          and graduated in January 2025. My thesis, “Kinetic modeling and dynamic simulation of an
+          integrated hydrocracking process using SLB Symmetry process simulator, VBA, VB.Net, and
+          Python,” was supervised by
+          <a href="https://scholar.google.com/citations?user=EVMUh8cAAAAJ&amp;hl=en">Prof. Mahmoud Reza Pishvaie</a>.
+        </p>
+        <p>
+          Before that, I started my B.Sc. in Chemical Engineering at Sharif University of Technology
+          in 2018 and completed it in 2022. My B.Sc. project, “Dynamic simulation and control of an
+          integrated CDU-VDU process using Aspen Plus simulator,” was also carried out under the
+          supervision of Prof. Pishvaie.
+        </p>
+      </div>
+    </section>
+
+    <!-- Research interests -->
+    <section id="interests">
+      <h2>Research interests</h2>
+      <ul class="interests">
+        <li>Dynamic modeling and simulation</li>
+        <li>Optimization and control</li>
+        <li>Application of AI in chemical engineering</li>
+      </ul>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>
+        The best ways to reach me are through email or GitHub. I am happy to discuss research,
+        collaborations, or questions about my work.
+      </p>
+      <ul class="contact-list">
+        <li>
+          <a href="mailto:you@example.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            you@example.com
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/arezasedaghat" rel="me noopener" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.93c.58.1.79-.25.79-.55v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.29-1.69-1.29-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.74.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.41-5.26 5.7.41.36.78 1.06.78 2.14v3.17c0 .31.21.66.8.55A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
+            github.com/arezasedaghat
+          </a>
+        </li>
+        <li>
+          <a href="https://scholar.google.com/citations?user=bqL5dq0AAAAJ&amp;hl=en" rel="me noopener" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2 1 8l11 6 9-4.91V17h2V8L12 2Z"/><path d="M5 13.18V17c0 2 3.13 4 7 4s7-2 7-4v-3.82l-7 3.82-7-3.82Z"/></svg>
+            Google Scholar profile
+          </a>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <p>© 2022–<span id="year">2026</span> Alireza Sedaghat · Built with plain HTML &amp; CSS</p>
+  </footer>
 
   <script>
-    // Update footer year
     document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Scrollspy: highlight active nav link
-    (function () {
-      const links = document.querySelectorAll('.sidebar nav a');
-      if (!links.length || !('IntersectionObserver' in window)) return;
-
-      const sections = [...links]
-        .map(a => document.querySelector(a.hash))
-        .filter(Boolean);
-
-      const setActive = (id) => {
-        links.forEach(a => a.classList.toggle('active', a.hash === '#' + id));
-      };
-
-      const io = new IntersectionObserver((entries) => {
-        // Pick the entry closest to the top of the viewport
-        const visible = entries
-          .filter(e => e.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-        if (visible.length) setActive(visible[0].target.id);
-      }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
-
-      sections.forEach(s => io.observe(s));
-    })();
   </script>
 </body>
 </html>
