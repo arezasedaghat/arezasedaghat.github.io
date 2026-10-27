@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Alireza Sedaghat — Chemical Engineer</title>
-  <meta name="description" content="Homepage of Alireza Sedaghat, Process Systems Engineering">
+  <meta name="description" content="Homepage of Alireza Sedaghat, chemical engineer working on modeling, simulation and control.">
   <meta name="theme-color" content="#0b2a5b">
   <link rel="canonical" href="https://arezasedaghat.github.io/">
 
@@ -49,6 +49,14 @@
       --ink: #14213d;
       --muted: #4a5a78;
 
+      /* tag colors */
+      --tag-journal-bg: #e3f0ff;
+      --tag-journal-fg: #114a8f;
+      --tag-journal-border: #b9d6f6;
+      --tag-conf-bg: #e7f7ec;
+      --tag-conf-fg: #1b5a2f;
+      --tag-conf-border: #b8e3c6;
+
       --radius: 14px;
       --radius-sm: 8px;
       --shadow-sm: 0 1px 2px rgba(11, 42, 91, .06), 0 1px 3px rgba(11, 42, 91, .08);
@@ -65,7 +73,7 @@
     body {
       margin: 0;
       font-family: var(--sans);
-      font-size: 1.0625rem;         /* 17px */
+      font-size: 1.0625rem;
       line-height: 1.75;
       color: var(--ink);
       background: var(--white);
@@ -73,13 +81,8 @@
       text-rendering: optimizeLegibility;
     }
 
-    /* ---------- Selection ---------- */
-    ::selection {
-      background: var(--sky);
-      color: var(--navy);
-    }
+    ::selection { background: var(--sky); color: var(--navy); }
 
-    /* ---------- Focus ---------- */
     a:focus-visible,
     button:focus-visible {
       outline: 3px solid var(--blue);
@@ -87,7 +90,6 @@
       border-radius: 4px;
     }
 
-    /* ---------- Links (general) ---------- */
     a {
       color: var(--blue);
       text-decoration-color: var(--sky);
@@ -95,11 +97,8 @@
       text-decoration-thickness: 1.5px;
       transition: text-decoration-color .2s ease, color .2s ease;
     }
-    a:hover {
-      text-decoration-color: var(--blue);
-    }
+    a:hover { text-decoration-color: var(--blue); }
 
-    /* ---------- Skip link ---------- */
     .skip-link {
       position: absolute;
       left: -999px;
@@ -167,7 +166,6 @@
         radial-gradient(ellipse 80% 60% at 50% 0%, #e6f0fd 0%, transparent 70%),
         linear-gradient(180deg, var(--mist) 0%, var(--white) 100%);
     }
-    /* dotted background mask */
     .hero::before {
       content: "";
       position: absolute;
@@ -217,7 +215,6 @@
       text-wrap: balance;
     }
 
-    /* ---------- Social pill buttons ---------- */
     .social-links {
       display: flex;
       gap: .65rem;
@@ -246,25 +243,17 @@
       box-shadow: var(--shadow-md);
       text-decoration: none;
     }
-    .social-links svg {
-      width: 18px;
-      height: 18px;
-      flex-shrink: 0;
-    }
+    .social-links svg { width: 18px; height: 18px; flex-shrink: 0; }
 
-    /* ---------- Main content ---------- */
+    /* ---------- Main ---------- */
     main {
       max-width: 740px;
       margin: 0 auto;
       padding: 3rem 1.5rem 5rem;
     }
 
-    section {
-      padding: 2.75rem 0;
-    }
-    section + section {
-      border-top: 1px solid var(--sky);
-    }
+    section { padding: 2.75rem 0; }
+    section + section { border-top: 1px solid var(--sky); }
 
     h2 {
       font-family: var(--serif);
@@ -284,7 +273,7 @@
     }
     p:last-child { margin-bottom: 0; }
 
-    /* ---------- About card ---------- */
+    /* ---------- About ---------- */
     .about-box {
       background: var(--mist);
       border-radius: var(--radius);
@@ -324,6 +313,115 @@
       height: 8px;
       border-radius: 50%;
       background: var(--blue);
+      flex-shrink: 0;
+    }
+
+    /* ---------- Publications ---------- */
+    .pub-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .pub-item {
+      background: var(--white);
+      border: 1px solid var(--sky);
+      border-radius: var(--radius-sm);
+      padding: 1.25rem 1.35rem;
+      box-shadow: var(--shadow-sm);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .pub-item:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: #b9d6f6;
+    }
+    .pub-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .55rem .75rem;
+      margin-bottom: .5rem;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      font-family: var(--sans);
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      padding: .22rem .6rem;
+      border-radius: 999px;
+      border: 1px solid;
+      line-height: 1.3;
+    }
+    .tag::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+    .tag-journal {
+      background: var(--tag-journal-bg);
+      color: var(--tag-journal-fg);
+      border-color: var(--tag-journal-border);
+    }
+    .tag-conference {
+      background: var(--tag-conf-bg);
+      color: var(--tag-conf-fg);
+      border-color: var(--tag-conf-border);
+    }
+    .pub-year {
+      font-size: .85rem;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+    .pub-title {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 1.08rem;
+      line-height: 1.4;
+      margin: 0 0 .5rem;
+      color: var(--navy);
+    }
+    .pub-title a {
+      color: inherit;
+      text-decoration-color: var(--sky);
+    }
+    .pub-title a:hover { color: var(--blue); }
+
+    .pub-authors {
+      font-size: .92rem;
+      color: var(--ink);
+      margin: 0 0 .35rem;
+    }
+    .pub-authors .me {
+      font-weight: 600;
+      color: var(--navy);
+    }
+    .pub-venue {
+      font-size: .9rem;
+      color: var(--muted);
+      margin: 0;
+      font-style: italic;
+    }
+    .pub-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      margin-top: .65rem;
+      font-size: .88rem;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .pub-link svg {
+      width: 14px;
+      height: 14px;
       flex-shrink: 0;
     }
 
@@ -374,7 +472,7 @@
     }
     footer p { margin: 0; max-width: none; }
 
-    /* ---------- Custom scrollbar (desktop) ---------- */
+    /* ---------- Custom scrollbar ---------- */
     @media (pointer: fine) {
       ::-webkit-scrollbar { width: 10px; }
       ::-webkit-scrollbar-track { background: var(--mist); }
@@ -399,7 +497,7 @@
       }
     }
 
-    /* ---------- Mobile tweaks ---------- */
+    /* ---------- Mobile ---------- */
     @media (max-width: 600px) {
       .topbar { padding: .7rem 1rem; }
       .topbar nav ul { gap: .85rem; }
@@ -408,6 +506,7 @@
       .avatar { width: 96px; height: 96px; font-size: 2rem; }
       main { padding: 2rem 1.25rem 4rem; }
       section { padding: 2rem 0; }
+      .pub-item { padding: 1.1rem 1.15rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -423,23 +522,22 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- ===== Top bar ===== -->
   <header class="topbar">
     <a class="brand" href="#top">Alireza Sedaghat</a>
     <nav aria-label="Sections">
       <ul>
         <li><a href="#about">About</a></li>
         <li><a href="#interests">Research</a></li>
+        <li><a href="#publications">Publications</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- ===== Hero ===== -->
   <section class="hero" id="top" aria-labelledby="hero-name">
     <div class="avatar" aria-hidden="true">AS</div>
     <h1 id="hero-name">Alireza Sedaghat</h1>
-    <p class="role">Process Systems Engineering</p>
+    <p class="role">Chemical engineer working on modeling, simulation and control of chemical processes.</p>
 
     <div class="social-links">
       <a href="https://github.com/arezasedaghat" rel="me noopener" target="_blank">
@@ -457,7 +555,6 @@
     </div>
   </section>
 
-  <!-- ===== Main ===== -->
   <main id="main">
 
     <!-- About -->
@@ -488,6 +585,70 @@
         <li>Dynamic modeling and simulation</li>
         <li>Optimization and control</li>
         <li>Application of AI in chemical engineering</li>
+      </ul>
+    </section>
+
+    <!-- Publications -->
+    <section id="publications">
+      <h2>Publications</h2>
+      <ul class="pub-list">
+
+        <!-- Journal paper -->
+        <li class="pub-item">
+          <div class="pub-meta">
+            <span class="tag tag-journal">Journal</span>
+            <span class="pub-year">2023</span>
+          </div>
+          <h3 class="pub-title">
+            <a href="https://cpd.usb.ac.ir/article_7794_468241a6846c60dafa854b585a96b719.pdf"
+               target="_blank" rel="noopener">
+              Mathematical Modeling of Methanol Steam Reforming Process
+            </a>
+          </h3>
+          <p class="pub-authors">
+            Mohammad J. Peymanfard, <span class="me">Alireza Sedaghat</span>
+          </p>
+          <p class="pub-venue">
+            Chemical Process Design (CPD) International Journal, vol. 2, p. 20, March 2023.
+          </p>
+          <a class="pub-link"
+             href="https://cpd.usb.ac.ir/article_7794_468241a6846c60dafa854b585a96b719.pdf"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 3h7v7"/><path d="M21 3 10 14"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/>
+            </svg>
+            Read paper (PDF)
+          </a>
+        </li>
+
+        <!-- Conference paper -->
+        <li class="pub-item">
+          <div class="pub-meta">
+            <span class="tag tag-conference">Conference</span>
+            <span class="pub-year">2022</span>
+          </div>
+          <h3 class="pub-title">
+            <a href="https://www.researchgate.net/publication/370845502_Feasibility_Study_of_a_Thermal_Desalination_Plant_MED_in_the_Styrene_Production_Process"
+               target="_blank" rel="noopener">
+              Feasibility Study of a Thermal Desalination Plant (MED) in Styrene Production Process
+            </a>
+          </h3>
+          <p class="pub-authors">
+            <span class="me">Alireza Sedaghat</span>, Mohammad J. Peymanfard &amp; Mohammad M. Shojaei Pakroo
+          </p>
+          <p class="pub-venue">
+            4th International Biennial Oil, Gas and Petrochemical Conference (OGPC), 2022, Bushehr, Iran.
+          </p>
+          <a class="pub-link"
+             href="https://www.researchgate.net/publication/370845502_Feasibility_Study_of_a_Thermal_Desalination_Plant_MED_in_the_Styrene_Production_Process"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 3h7v7"/><path d="M21 3 10 14"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/>
+            </svg>
+            View on ResearchGate
+          </a>
+        </li>
+
       </ul>
     </section>
 
@@ -522,7 +683,6 @@
 
   </main>
 
-  <!-- ===== Footer ===== -->
   <footer>
     <p>© 2022–<span id="year">2026</span> Alireza Sedaghat · Built with plain HTML &amp; CSS</p>
   </footer>
