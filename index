@@ -4,12 +4,243 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Alireza Sedaghat</title>
+  <meta name="description" content="Homepage of Alireza Sedaghat, chemical engineer working on modeling, simulation and control.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: system-ui, sans-serif; max-width: 700px; margin: 3rem auto; padding: 0 1rem; line-height: 1.6; }
+    :root {
+      --navy: #0b2a5b;
+      --blue: #1f5fbf;
+      --sky: #cfe2f8;
+      --mist: #eaf2fc;
+      --white: #ffffff;
+      --ink: #14213d;
+      --muted: #4a5a78;
+      --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+      --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 1.5rem; }
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--ink);
+      background: var(--white);
+    }
+    a { color: var(--blue); }
+    a:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    /* ---------- Layout ---------- */
+    .page { display: block; }
+
+    .sidebar {
+      background: var(--navy);
+      color: var(--white);
+      padding: 2rem 1.5rem;
+    }
+    .sidebar h1 {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: 2.1rem;
+      line-height: 1.15;
+      margin: 0 0 .5rem;
+    }
+    .sidebar .role { margin: 0 0 1.5rem; color: var(--sky); }
+    .sidebar nav ul {
+      list-style: none;
+      margin: 0 0 1.5rem;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .25rem .5rem;
+    }
+    .sidebar nav a {
+      display: block;
+      padding: .35rem .75rem;
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 999px;
+      font-weight: 500;
+      font-size: .95rem;
+    }
+    .sidebar nav a:hover { background: rgba(255,255,255,.14); }
+    .sidebar a:focus-visible { outline-color: var(--sky); }
+    .sidebar .links { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; }
+    .sidebar .links a { color: var(--sky); font-size: .95rem; }
+
+    main { padding: 0 1.5rem 3rem; }
+    section { padding: 2.5rem 0 .5rem; }
+    section + section { border-top: 1px solid var(--sky); margin-top: 1.5rem; }
+
+    h2 {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 1.75rem;
+      line-height: 1.2;
+      margin: 0 0 1.25rem;
+      color: var(--navy);
+    }
+    p { margin: 0 0 1rem; max-width: 68ch; }
+
+    /* ---------- About ---------- */
+    .about-box {
+      background: var(--mist);
+      border-left: 4px solid var(--blue);
+      padding: 1.25rem 1.25rem .25rem;
+      border-radius: 0 6px 6px 0;
+    }
+
+    /* ---------- Research interests ---------- */
+    .interests { list-style: none; margin: 0; padding: 0; max-width: 40rem; }
+    .interests li {
+      padding: .9rem 1rem;
+      margin-bottom: .6rem;
+      background: var(--white);
+      border: 1px solid var(--sky);
+      border-left: 4px solid var(--blue);
+      border-radius: 0 6px 6px 0;
+      color: var(--navy);
+      font-weight: 500;
+    }
+
+    /* ---------- Placeholder sections ---------- */
+    .construction {
+      background: var(--mist);
+      color: var(--muted);
+      border: 1px dashed var(--blue);
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
+      max-width: 40rem;
+      margin-bottom: 1rem;
+    }
+
+    footer { padding: 1.5rem; color: var(--muted); font-size: .88rem; border-top: 1px solid var(--sky); }
+
+    /* ---------- Desktop ---------- */
+    @media (min-width: 900px) {
+      .page { display: grid; grid-template-columns: 20rem 1fr; }
+      .sidebar {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        padding: 3rem 2rem;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+      }
+      .sidebar nav ul { flex-direction: column; flex-wrap: nowrap; gap: .15rem; margin-bottom: 2rem; }
+      .sidebar nav a { border-radius: 6px; padding: .5rem .75rem; margin-left: -.75rem; }
+      .sidebar .links { flex-direction: column; margin-top: auto; gap: .4rem; }
+      main { padding: 2rem 4rem 4rem; max-width: 60rem; }
+      footer { padding: 1.5rem 4rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
   </style>
 </head>
 <body>
-  <h1>Alireza Sedaghat</h1>
-  <p>Welcome to my homepage. This is a test page, and I will add more soon.</p>
+  <div class="page">
+
+    <!-- ===== Sidebar / header ===== -->
+    <header class="sidebar">
+      <h1>Alireza Sedaghat</h1>
+      <p class="role">Chemical engineer · modeling, simulation and control</p>
+      <nav aria-label="Sections">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#interests">Research interests</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#publications">Publications</a></li>
+          <li><a href="#awards">Honors and awards</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="links">
+        <a href="https://github.com/arezasedaghat">GitHub</a>
+        <a href="https://scholar.google.com/citations?user=EVMUh8cAAAAJ&amp;hl=en">Google Scholar</a>
+      </div>
+    </header>
+
+    <div>
+      <main>
+
+        <!-- ===== About ===== -->
+        <section id="about">
+          <h2>About</h2>
+          <div class="about-box">
+            <p>
+              I hold an M.Sc. in Chemical Engineering, in the Modeling, Simulation, and Control group,
+              from Sharif University of Technology (Tehran, Iran). I joined the program in September 2022
+              and graduated in January 2025. My thesis, “Kinetic modeling and dynamic simulation of an
+              integrated hydrocracking process using SLB Symmetry process simulator, VBA, VB.Net, and
+              Python,” was supervised by
+              <a href="https://scholar.google.com/citations?user=EVMUh8cAAAAJ&amp;hl=en">Prof. Mahmoud Reza Pishvaie</a>.
+              Before that, I started my B.Sc. in Chemical Engineering at Sharif University of Technology
+              in 2018 and completed it in 2022. My B.Sc. project, “Dynamic simulation and control of an
+              integrated CDU-VDU process using Aspen Plus simulator,” was also carried out under the
+              supervision of Prof. Pishvaie.
+            </p>
+          </div>
+        </section>
+
+        <!-- ===== Research interests ===== -->
+        <section id="interests">
+          <h2>Research interests</h2>
+          <ul class="interests">
+            <li>Dynamic modeling and simulation</li>
+            <li>Optimization and control</li>
+            <li>Application of AI in chemical engineering</li>
+          </ul>
+        </section>
+
+        <!-- ===== Experience ===== -->
+        <section id="experience">
+          <h2>Experience</h2>
+          <p class="construction">Under Construction</p>
+        </section>
+
+        <!-- ===== Projects ===== -->
+        <section id="projects">
+          <h2>Projects</h2>
+          <p class="construction">Under Construction</p>
+        </section>
+
+        <!-- ===== Publications ===== -->
+        <section id="publications">
+          <h2>Publications</h2>
+          <p class="construction">Under Construction</p>
+        </section>
+
+        <!-- ===== Honors and awards ===== -->
+        <section id="awards">
+          <h2>Honors and awards</h2>
+          <p class="construction">Under Construction</p>
+        </section>
+
+        <!-- ===== Contact ===== -->
+        <section id="contact">
+          <h2>Contact</h2>
+          <p class="construction">Under Construction</p>
+        </section>
+
+      </main>
+      <footer>© <span id="year">2026</span> Alireza Sedaghat</footer>
+    </div>
+
+  </div>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
