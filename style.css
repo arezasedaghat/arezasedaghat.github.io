@@ -145,12 +145,20 @@ a:hover { text-decoration-color: var(--blue); }
   position: absolute;
   inset: 0;
   background-image: url("assets/background.webp");
-  background-size: contain;          /* ← whole image, no crop */
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.6;                       /* tune 0.4–0.8 */
-  mix-blend-mode: multiply;           /* remove if PNG has alpha */
+  opacity: 0.65;
+  mix-blend-mode: multiply;
   pointer-events: none;
+
+  /* fade all four edges into the hero gradient */
+  -webkit-mask-image:
+    radial-gradient(ellipse 90% 85% at 50% 50%,
+      black 55%, transparent 100%);
+          mask-image:
+    radial-gradient(ellipse 90% 85% at 50% 50%,
+      black 55%, transparent 100%);
 }
 .hero > * { position: relative; z-index: 1; }
 
