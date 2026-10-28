@@ -672,6 +672,37 @@ footer p { margin: 0; max-width: none; }
   line-height: 1.3;
 }
 
+/* Course list inside a TA timeline card */
+.timeline-courses {
+  list-style: none;
+  margin: .75rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.timeline-courses li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: .75rem;
+  flex-wrap: wrap;
+  padding: .45rem .75rem;
+  border-radius: var(--radius-sm);
+  background: var(--mist);
+  font-size: .9rem;
+}
+.timeline-courses .course-name {
+  color: var(--navy);
+  font-weight: 500;
+}
+.timeline-courses .course-term {
+  color: var(--muted);
+  font-size: .82rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
 /* Optional inline note for empty states */
 .timeline-note {
   background: var(--mist);
@@ -705,6 +736,15 @@ footer p { margin: 0; max-width: none; }
   .timeline-item { padding: 1.1rem 1.15rem 1.1rem 1.6rem; }
   .timeline-item::before { left: .65rem; }
   .timeline-item::after { left: calc(.65rem - 4px); }
+
+  .timeline-courses li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .1rem;
+  }
+  .timeline-courses .course-term {
+    font-size: .78rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
