@@ -21,6 +21,7 @@
       <ul>
         <li><a href="about.html">About</a></li>
         <li><a href="research.html">Research</a></li>
+        <li><a href="experience.html">Experience</a></li>
         <li><a href="projects.html" aria-current="page">Projects</a></li>
         <li><a href="publications.html">Publications</a></li>
         <li><a href="contact.html">Contact</a></li>
@@ -34,7 +35,6 @@
       <p>Academic projects on process modeling, simulation, optimization and control.</p>
     </header>
 
-    <!-- Optional filter bar -->
     <div class="project-filter" role="group" aria-label="Filter projects">
       <button type="button" data-filter="all" aria-pressed="true">All</button>
       <button type="button" data-filter="slb-symmetry" aria-pressed="false">SLB Symmetry</button>
@@ -205,7 +205,6 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Optional filter bar
     (function () {
       const bar = document.querySelector('.project-filter');
       if (!bar) return;
