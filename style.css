@@ -140,25 +140,62 @@ a:hover { text-decoration-color: var(--blue); }
     linear-gradient(180deg, var(--mist) 0%, var(--white) 100%);
 }
 
+/*
+ * Background image layer.
+ *
+ * The harsh rectangle you were seeing came from the mask being a plain
+ * radial gradient — the image's rectangular edges never fully faded
+ * before reaching the layer's bounding box.
+ *
+ * This version fixes it in three ways at once:
+ *
+ *   1) `padding` + `background-origin: content-box` inset the image
+ *      inside the layer, so the outer ring of the layer contains no
+ *      image pixels at all.
+ *   2) A cross-axis linear mask guarantees the outer 15% on every
+ *      side is fully transparent.
+ *   3) A radial vignette fades the interior softly toward the edges.
+ *
+ * All three masks are intersected by the browser (multiple mask-image
+ * layers multiply), so an edge only shows if all three let it through.
+ */
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
+
+  /* inset the image from the layer edges */
+  padding: 6rem 7rem;
+  box-sizing: border-box;
+
   background-image: url("assets/background.webp");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.65;
+  background-origin: content-box;
+
+  opacity: 0.6;
   mix-blend-mode: multiply;
   pointer-events: none;
 
-  /* fade all four edges into the hero gradient */
+  /* crossfade on both axes + soft radial vignette */
   -webkit-mask-image:
-    radial-gradient(ellipse 90% 85% at 50% 50%,
-      black 55%, transparent 100%);
-          mask-image:
-    radial-gradient(ellipse 90% 85% at 50% 50%,
-      black 55%, transparent 100%);
+    linear-gradient(90deg,
+      transparent 0%, black 12%, black 88%, transparent 100%),
+    linear-gradient(180deg,
+      transparent 0%, black 12%, black 88%, transparent 100%),
+    radial-gradient(ellipse 85% 80% at 50% 50%,
+      black 60%, transparent 100%);
+  -webkit-mask-composite: source-in;
+
+  mask-image:
+    linear-gradient(90deg,
+      transparent 0%, black 12%, black 88%, transparent 100%),
+    linear-gradient(180deg,
+      transparent 0%, black 12%, black 88%, transparent 100%),
+    radial-gradient(ellipse 85% 80% at 50% 50%,
+      black 60%, transparent 100%);
+  mask-composite: intersect;
 }
 .hero > * { position: relative; z-index: 1; }
 
@@ -712,6 +749,28 @@ footer p { margin: 0; max-width: none; }
   .timeline-item { padding: 1.1rem 1.15rem 1.1rem 1.6rem; }
   .timeline-item::before { left: .65rem; }
   .timeline-item::after { left: calc(.65rem - 4px); }
+
+  /* Background: tighter padding + softer fade on small screens */
+  .hero::before {
+    padding: 2rem 2.5rem;
+    opacity: 0.45;
+    -webkit-mask-image:
+      linear-gradient(90deg,
+        transparent 0%, black 8%, black 92%, transparent 100%),
+      linear-gradient(180deg,
+        transparent 0%, black 8%, black 92%, transparent 100%),
+      radial-gradient(ellipse 95% 90% at 50% 50%,
+        black 55%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(90deg,
+        transparent 0%, black 8%, black 92%, transparent 100%),
+      linear-gradient(180deg,
+        transparent 0%, black 8%, black 92%, transparent 100%),
+      radial-gradient(ellipse 95% 90% at 50% 50%,
+        black 55%, transparent 100%);
+    mask-composite: intersect;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
