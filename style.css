@@ -139,20 +139,17 @@ a:hover { text-decoration-color: var(--blue); }
     radial-gradient(ellipse 80% 60% at 50% 0%, #e6f0fd 0%, transparent 70%),
     linear-gradient(180deg, var(--mist) 0%, var(--white) 100%);
 }
+
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
   background-image: url("assets/background.webp");
-  background-size: cover;
+  background-size: contain;          /* ← whole image, no crop */
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.55;
-  mix-blend-mode: multiply;
-  -webkit-mask-image: radial-gradient(ellipse 80% 75% at 50% 50%,
-      transparent 0%, black 55%);
-          mask-image: radial-gradient(ellipse 80% 75% at 50% 50%,
-      transparent 0%, black 55%);
+  opacity: 0.6;                       /* tune 0.4–0.8 */
+  mix-blend-mode: multiply;           /* remove if PNG has alpha */
   pointer-events: none;
 }
 .hero > * { position: relative; z-index: 1; }
