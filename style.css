@@ -579,39 +579,49 @@ footer p { margin: 0; max-width: none; }
 }
 
 .timeline-item {
-  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.1rem;
   background: var(--white);
   border: 1px solid var(--sky);
   border-radius: var(--radius-sm);
-  padding: 1.25rem 1.35rem 1.25rem 1.75rem;
+  padding: 1.25rem 1.35rem;
   box-shadow: var(--shadow-sm);
   transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-}
-.timeline-item::before {
-  content: "";
-  position: absolute;
-  left: .75rem;
-  top: 1.4rem;
-  bottom: 1.4rem;
-  width: 3px;
-  border-radius: 2px;
-  background: var(--sky);
-}
-.timeline-item::after {
-  content: "";
-  position: absolute;
-  left: calc(.75rem - 4px);
-  top: 1.35rem;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: var(--blue);
-  box-shadow: 0 0 0 3px var(--white);
 }
 .timeline-item:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
   border-color: #b9d6f6;
+}
+
+/* Left column: logo + university name */
+.timeline-logo {
+  flex: 0 0 84px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .4rem;
+  text-align: center;
+}
+.timeline-logo img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  display: block;
+}
+.timeline-logo .logo-caption {
+  font-size: .7rem;
+  line-height: 1.25;
+  color: var(--muted);
+  font-weight: 500;
+  letter-spacing: .01em;
+}
+
+/* Right column: role, date, org, courses */
+.timeline-body {
+  flex: 1;
+  min-width: 0;
 }
 
 .timeline-head {
@@ -733,9 +743,28 @@ footer p { margin: 0; max-width: none; }
   .avatar { width: 96px; height: 96px; font-size: 2rem; }
   .page { padding: 1.5rem 1.25rem 3rem; }
   .pub-item { padding: 1.1rem 1.15rem; }
-  .timeline-item { padding: 1.1rem 1.15rem 1.1rem 1.6rem; }
-  .timeline-item::before { left: .65rem; }
-  .timeline-item::after { left: calc(.65rem - 4px); }
+
+  /* Stack logo above the card body on narrow screens */
+  .timeline-item {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1.1rem 1.15rem;
+    gap: .75rem;
+  }
+  .timeline-logo {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    gap: .65rem;
+    flex: 0 0 auto;
+  }
+  .timeline-logo img {
+    width: 44px;
+    height: 44px;
+  }
+  .timeline-logo .logo-caption {
+    font-size: .72rem;
+  }
 
   .timeline-courses li {
     flex-direction: column;
