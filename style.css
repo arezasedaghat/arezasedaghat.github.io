@@ -143,7 +143,7 @@ a:hover { text-decoration-color: var(--blue); }
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("assets/background.png");
+  background-image: url("assets/background.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
